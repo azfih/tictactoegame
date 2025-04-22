@@ -17,7 +17,8 @@ Welcome to the Tic Tac Toe game written in Python! This project includes both Si
 1. Make sure you have Python 3.x installed.  
 2. Download or clone this repository.  
 3. Run the Python file:    
-   python tictactoe.py
+   ```bash
+   python "tictactoe.py"
 
 🕹️ How to Play
 1. Start the game and select either:
