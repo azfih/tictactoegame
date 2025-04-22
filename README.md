@@ -27,6 +27,7 @@ Welcome to the Tic Tac Toe game written in Python! This project includes both Si
 2. Each player chooses a symbol ('x' or 'o').
 3. A coin toss decides who starts first.
 The board positions are numbered 1–9 like this:
+
 1 | 2 | 3  
 ---------  
 4 | 5 | 6  
@@ -36,8 +37,9 @@ Players take turns entering the position number for their move. The game announc
 
 ## 📁 File Structure
 tictactoe.py – Main script containing game logic
+
 ## ✍️ Authors
-Hifza Rafiq
-Final Lab Project – Python Programming
+Hifza Rafiq</br>
+Final Lab Project – Python Programming</br>
 Comsats University Islamabad
 
