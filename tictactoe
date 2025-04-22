@@ -1,0 +1,532 @@
+#toss
+def toss(toss_turn,toss_op,choice):
+    import random
+    a=random.randint(0,1)
+    if choice=='heads' or choice=='HEADS':
+        choice=0
+    elif choice=='tails' or choice=='TAILS':
+        choice=1
+    if choice==a:
+        print(toss_turn,"won the toss, and will have first turn")
+        toss_win=toss_turn
+    elif choice!=a:
+        print(toss_op,"won the toss and will have first turn")
+        toss_win=toss_op
+    return toss_win
+
+#grid
+def print_grid():
+    a1,a2,a3,a4,a5,a6,a7,a8,a9=1,2,3,4,5,6,7,8,9
+    print(a1,'|',a2,'|',a3)
+    print('---------')
+    print(a4,'|',a5,'|',a6)
+    print('---------')
+    print(a7,'|',a8,'|',a9)
+
+
+#choosing symbols
+def symbol_choose(player_1):
+    print(player_1,"choose your symbol, 'o' or 'x'")
+    s1=input("select your symbol 'o' or 'x'=")
+    while s1!='o' and  s1!='O' and s1!='x' and s1!='X':
+        s1=input("enter valid choice as, 'o' or 'x'=")
+    if s1=='o' or s1=='O':
+        s2='x'
+    elif s1=='x' or s1=='X':
+        s2='o'
+    return s1,s2
+
+#single player game
+def enter_valueSinglePlayer():
+    print("             (:WELCOME TO SINGLE PLAYER GAME:)           ")
+    a1,a2,a3,a4,a5,a6,a7,a8,a9=1,2,3,4,5,6,7,8,9
+    player_1=input("Enter your name=")
+    while player_1=='':
+        player_1=input("Name can't be empty=")
+    player_2='computer'
+    s1,s2=symbol_choose(player_1)
+    print("symbol of",player_1,"is",s1,"and symbol of",player_2,"is",s2)
+    choice=input("Enter your choice for toss,heads or tails,press enter=")
+    while choice!='heads' and choice!='tails' and choice!='HEADS' and choice!='TAILS':
+        choice=input("please Enter Ri8 choice as 'heads' or 'tails'=")
+    A=toss(player_1,player_2,choice)
+    location=[]
+    q=0
+    l=0
+    count=1
+    print_grid()
+    while count<=9:
+        i=location.insert(q,l)
+        if A==player_1:
+            B=player_2
+            print(player_1,"select location")
+            l=(input("location="))
+            i=location.insert(q,l)
+            x=location.count(l)
+            while x>1:
+                print(player_1,"please make ri8 choice")
+                l=(input("location="))
+                i=location.insert(q,l)
+                x=location.count(l)
+            if (x==1 or x==0)and(l=='1' or l=='2' or l=='3' or l=='4' or l=='5' or l=='6' or l=='7' or l=='8' or l=='9'):
+                if l=='1':
+                    a1=s1
+                elif l=='2':
+                    a2=s1
+                elif l=='3':
+                    a3=s1
+                elif l=='4':
+                    a4=s1
+                elif l=='5':
+                    a5=s1
+                elif l=='6':
+                    a6=s1
+                elif l=='7':
+                    a7=s1
+                elif l=='8':
+                    a8=s1
+                elif l=='9':
+                    a9=s1
+                print(a1,'|',a2,'|',a3)
+                print('---------')
+                print(a4,'|',a5,'|',a6)
+                print('---------')
+                print(a7,'|',a8,'|',a9)
+                count=count+1
+                q=q+1
+            else:
+                print("invalid input")
+                continue
+        if A==player_2:
+            B=player_1
+            print("computers turn")
+            #winning conditions for computer
+            if (a1==a2==s2 or a2==a1==s2) and (a3==3):
+                a3=s2
+                l='3'
+            elif (a1==a3==s2 or a3==a1==s2) and (a2==2):
+                a2=s2
+                l='2'
+            elif (a2==a3==s2 or a3==a2==s2) and(a1==1):
+                a1=s2
+                l='1'
+            elif (a1==a4==s2 or a4==a1==s2) and (a7==7):
+                a7=s2
+                l='7'
+            elif (a1==a7==s2 or a7==a1==s2) and (a4==4):
+                a4=s2
+                l='4'
+            elif (a4==a7==s2 or a7==a4==s2) and (a1==1):
+                a1=s2
+                l='1'
+            elif (a5==a4==s2 or a4==a5==s2) and (a6==6):
+                a6=s2
+                l='6'
+            elif (a5==a6==s2 or a6==a5==s2) and (a4==4):
+                a4=s2
+                l='4'
+            elif (a4==a6==s2 or a6==a4==s2) and (a5==5):
+                a5=s2
+                l='5'
+            elif (a7==a8==s2 or a8==a7==s2) and (a9==9):
+                a9=s2
+                l='9'
+            elif (a8==a9==s2 or a9==a8==s2) and (a7==7):
+                a7=s2
+                l='7'
+            elif (a7==a9==s2 or a9==a7==s2) and (a8==8):
+                a8=s2
+                l='8'
+            elif (a5==a2==s2 or a2==a5==s2) and (a8==8):
+                a8=s2
+                l='8'
+            elif (a5==a8==s2 or a8==a5==s2) and(a2==2):
+                a2=s2
+                l='2'
+            elif (a2==a8==s2 or a8==a2==s2) and (a5==5):
+                a5=s2
+                l='5'
+            elif (a3==a6==s2 or a6==a3==s2) and(a9==9):
+                a9=s2
+                l='9'
+            elif (a6==a9==s2 or a9==a6==s2)and (a3==3):
+                a3=s2
+                l='3'
+            elif (a3==a9==s2 or a9==a3==s2)and (a6==6):
+                a6=s2
+                l='6'
+            elif (a1==a5==s2 or a5==a1==s2)and (a9==9):
+                a9=s2
+                l='9'
+            elif (a1==a9==s2 or a9==a1==s2)and (a5==5):
+                a5=s2
+                l='5'
+            elif (a5==a9==s2 or a9==a5==s2)and (a1==1):
+                a1=s2
+                l='1'
+            elif (a3==a5==s2 or a5==a3==s2)and(a7==7):
+                a7=s2
+                l='7'
+            elif (a3==a7==s2 or a7==a3==s2)and (a5==5):
+                a5=s2
+                l='5'
+            elif (a5==a7==s2 or a7==a5==s2)and(a3==3):
+                a3=s2
+                l='3'
+            elif (a2==a6==s2 or a6==a2==s2)and (a3==3):
+                a3=s2
+                l='3'
+            elif (a2==a4==s2 or a4==a2==s2) and (a1==1):
+                a1=s2
+                l='1'
+            elif (a4==a8==s2 or a8==a4==s2)and (a7==7):
+                a7=s2
+                l='7'
+            elif (a6==a8==s2 or a8==a6==s2)and (a9==9):
+                a9=s2
+                l='9'
+            #the case in which player is winning
+            elif (a1==a2==s1 or a2==a1==s1) and (a3==3):
+                a3=s2
+                l='3'
+            elif (a1==a3==s1 or a3==a1==s1) and (a2==2):
+                a2=s2
+                l='2'
+            elif (a2==a3==s1 or a3==a2==s1) and(a1==1):
+                a1=s2
+                l='1'
+            elif (a1==a4==s1 or a4==a1==s1) and (a7==7):
+                a7=s2
+                l='7'
+            elif (a1==a7==s1 or a7==a1==s1) and (a4==4):
+                a4=s2
+                l='4'
+            elif (a4==a7==s1 or a7==a4==s1) and (a1==1):
+                a1=s2
+                l='1'
+            elif (a5==a4==s1 or a4==a5==s1) and (a6==6):
+                a6=s2
+                l='6'
+            elif (a5==a6==s1 or a6==a5==s1) and (a4==4):
+                a4=s2
+                l='4'
+            elif (a4==a6==s1 or a6==a4==s1) and (a5==5):
+                a5=s2
+                l='5'
+            elif (a7==a8==s1 or a8==a7==s1) and (a9==9):
+                a9=s2
+                l='9'
+            elif (a8==a9==s1 or a9==a8==s1) and (a7==7):
+                a7=s2
+                l='7'
+            elif (a7==a9==s1 or a9==a7==s1) and (a8==8):
+                a8=s2
+                l='8'
+            elif (a5==a2==s1 or a2==a5==s1) and (a8==8):
+                a8=s2
+                l='8'
+            elif (a5==a8==s1 or a8==a5==s1)and(a2==2):
+                a2=s2
+                l='2'
+            elif (a2==a8==s1 or a8==a2==s1) and (a5==5):
+                a5=s2
+                l='5'
+            elif (a3==a6==s1 or a6==a3==s1) and(a9==9):
+                a9=s2
+                l='9'
+            elif (a6==a9==s1 or a9==a6==s1)and (a3==3):
+                a3=s2
+                l='3'
+            elif (a3==a9==s1 or a9==a3==s1)and (a6==6):
+                a6=s2
+                l='6'
+            elif (a1==a5==s1 or a5==a1==s1)and (a9==9):
+                a9=s2
+                l='9'
+            elif (a1==a9==s1 or a9==a1==s1)and (a5==5):
+                a5=s2
+                l='5'
+            elif (a5==a9==s1 or a9==a5==s1)and (a1==1):
+                a1=s2
+                l='1'
+            elif (a3==a5==s1 or a5==a3==s1)and(a7==7):
+                a7=s2
+                l='7'
+            elif (a3==a7==s1 or a7==a3==s1)and (a5==5):
+                a5=s2
+                l='5'
+            elif (a5==a7==s1 or a7==a5==s1)and(a3==3):
+                a3=s2
+                l='3'
+            #to avoid double chances of user win
+            elif (a2==a6==s1 or a6==a2==s1)and (a3==3):
+                a3=s2
+                l='3'
+            elif (a2==a4==s1 or a4==a2==s1) and (a1==1):
+                a1=s2
+                l='1'
+            elif (a4==a8==s1 or a8==a4==s1)and (a7==7):
+                a7=s2
+                l='7'
+            elif (a6==a8==s1 or a8==a6==s1)and (a9==9):
+                a9=s2
+                l='9'  
+            elif count==4:
+                if (a1==s1 and a7==s1)or (a7==s1 and a3==s1)or (a9==s1 and a3==s1) or (a1==s1 and a9==s1) or (a1==s1 and a3==s1) or (a7==s1 and a9==s1):
+                    if a2==2:
+                        a2=s2
+                        l='2'
+                    elif a4==4:
+                        a4=s2
+                        l='4'
+                    elif a6==6:
+                        a6=s2
+                        l='6'
+                    elif a8==8:
+                        a8=s2
+                        l='8'
+                elif (a6==a7==s1) or (a7==a6==s1):
+                    if a2==2:
+                        a2=s2
+                        l='2'
+                    elif a4==4:
+                        a4=s2
+                        l='4'
+                    elif a6==6:
+                        a6=s2
+                        l='6'
+                    elif a8==8:
+                        a8=s2
+                        l='8'
+                elif (a8==a3==s1) or (a3==a8==s1) and a9==9:
+                    a9=s2
+                    l='9'
+                elif (a8==a1==s1)or(a1==a8==s1)and a7==7:
+                    a7=s2
+                    l='7'
+                else:
+                    if a5==5:
+                        a5=s2
+                        l='5'
+                    elif a1==1:
+                        a1=s2
+                        l='1'
+                    elif a3==3:
+                        a3=s2
+                        l='3'
+                    elif a7==7:
+                        a7=s2
+                        l='7'
+                    elif a9==9:
+                        a9=s2
+                        l='9'
+                    else:
+                        if a2==2:
+                            a2=s2
+                            l='2'
+                        elif a4==4:
+                            a4=s2
+                            l='4'
+                        elif a8==8:
+                            a8=s2
+                            l='8'
+                        elif a6==6:
+                            a6=s2
+                            l='6'
+            #if neither computer is winning nor user is winning
+            elif a5==5:
+                a5=s2
+                l='5'
+            elif a1==1:
+                a1=s2
+                l='1'
+            elif a3==3:
+                a3=s2
+                l='3'
+            elif a7==7:
+                a7=s2
+                l='7'
+            elif a9==9:
+                a9=s2
+                l='9'
+            else:
+                if a2==2:
+                    a2=s2
+                    l='2'
+                elif a4==4:
+                    a4=s2
+                    l='4'
+                elif a8==8:
+                    a8=s2
+                    l='8'
+                elif a6==6:
+                    a6=s2
+                    l='6'
+            print(a1,'|',a2,'|',a3)
+            print('---------')
+            print(a4,'|',a5,'|',a6)
+            print('---------')
+            print(a7,'|',a8,'|',a9)
+            count=count+1
+            q=q+1
+        A=B
+        win_condition=winning_conditions(a1,a2,a3,a4,a5,a6,a7,a8,a9)
+        if win_condition==True:
+            winner=choose_winner(s1,s2,player_1,player_2,a1,a2,a3,a4,a5,a6,a7,a8,a9)
+            break
+    if win_condition==False:
+        winner=choose_winner(s1,s2,player_1,player_2,a1,a2,a3,a4,a5,a6,a7,a8,a9)
+        
+
+#multiplayer game
+def users_moveMultiplayer():
+    print("               (:WELCOME TO MULTIPLAYER GAME:)                ")
+    a1,a2,a3,a4,a5,a6,a7,a8,a9=1,2,3,4,5,6,7,8,9
+    player_1=input("Enter name of first player=")
+    while player_1=='':
+        player_1=input("name can not be empty, Enter name=")
+    s1,s2=symbol_choose(player_1)
+    player_2=input("Enter name of second player=")
+    while player_2==player_1 or player_2=='':
+        player_2=input("players name cannot be same and empty,enter name=")
+    print("symbol of",player_1,"is",s1,"and symbol of",player_2,"is",s2)
+    toss_turn=player_2
+    toss_op=player_1
+    print(player_2,"will make call for toss and",player_1,"will toss",
+          player_2,"select either 'heads' or 'tails'")
+    choice=input("Enter your choice heads or tails=")
+    while choice!='heads' and choice!='tails' and choice!='HEADS' and choice!='TAILS':
+        choice=input("please enter 'heads' or 'tails'")
+    A=toss(toss_turn,toss_op,choice)
+    count=1
+    q=1
+    location=[0]
+    print_grid()
+    while count<=9:
+        print(A,"enter your location=")
+        L=(input("location="))
+        i=location.insert(q,L)
+        x=location.count(L)
+        while x>1:
+            print(A,"please enter ri8 location")
+            L=(input("location="))
+            i=location.insert(q,L)
+            x=location.count(L)
+        if x==1 and (L=='1' or L=='2' or L=='3' or L=='4' or L=='5' or L=='6' or L=='7' or L=='8' or L=='9'):
+            if A==player_1:
+                B=player_2
+                if L=='1':
+                    a1=s1
+                elif L=='2':
+                    a2=s1
+                elif L=='3':
+                    a3=s1
+                elif L=='4':
+                    a4=s1
+                elif L=='5':
+                    a5=s1
+                elif L=='6':
+                    a6=s1
+                elif L=='7':
+                    a7=s1
+                elif L=='8':
+                    a8=s1
+                elif L=='9':
+                    a9=s1
+            elif A==player_2:
+                B=player_1
+                if L=='1':
+                    a1=s2
+                elif L=='2':
+                    a2=s2
+                elif L=='3':
+                    a3=s2
+                elif L=='4':
+                    a4=s2
+                elif L=='5':
+                    a5=s2
+                elif L=='6':
+                    a6=s2
+                elif L=='7':
+                    a7=s2
+                elif L=='8':
+                    a8=s2
+                elif L=='9':
+                    a9=s2
+            print(a1,'|',a2,'|',a3)
+            print('---------')
+            print(a4,'|',a5,'|',a6)
+            print('---------')
+            print(a7,'|',a8,'|',a9)
+            count=count+1
+            q=q+1
+            A=B
+        else:
+            print("invalid input")
+        win_condition=winning_conditions(a1,a2,a3,a4,a5,a6,a7,a8,a9)
+        if win_condition==True:
+            winner=choose_winner(s1,s2,player_1,player_2,a1,a2,a3,a4,a5,a6,a7,a8,a9)
+            break
+    if win_condition==False:
+        winner=choose_winner(s1,s2,player_1,player_2,a1,a2,a3,a4,a5,a6,a7,a8,a9)
+            
+
+#checking winning condirions
+def winning_conditions(a1,a2,a3,a4,a5,a6,a7,a8,a9):
+    condition=(a1==a5 and a5==a9 and a9==a1) or (a2==a5 and a5==a8 and a8==a2) or (a3==a5 and a5==a7 and a7==a3) or (a4==a5 and a5==a6 and a6==a4) or (a1==a4 and a4==a7 and a7==a1) or (a3==a6 and a6==a9 and a9==a3) or (a7==a8 and a8==a9 and a9==a7) or (a1==a2 and a2==a3 and a3==a1)
+    return condition
+
+#choosing winner
+def choose_winner(s1,s2,player_1,player_2,a1,a2,a3,a4,a5,a6,a7,a8,a9):
+    x=(a1==s1 and a5==s1 and a9==s1) or (a2==s1 and a5==s1 and a8==s1) or (a3==s1 and a5==s1 and a7==s1) or (a4==s1 and a5==s1 and a6==s1) or (a1==s1 and a4==s1 and a7==s1) or (a3==s1 and a6==s1 and a9==s1) or (a1==s1 and a2==s1 and a3==s1) or (a7==s1 and a8==s1 and a9==s1)
+    y=(a1==s2 and a5==s2 and a9==s2) or (a2==s2 and a5==s2 and a8==s2) or (a3==s2 and a5==s2 and a7==s2) or (a4==s2 and a5==s2 and a6==s2) or (a1==s2 and a4==s2 and a7==s2) or (a3==s2 and a6==s2 and a9==s2) or (a1==s2 and a2==s2 and a3==s2) or (a7==s2 and a8==s2 and a9==s2)
+    if x==False and y==True:
+        print(player_2,"has won the match")
+    elif x==True and y==False:
+        print(player_1, "has won the game")
+    elif x==False and y==False:
+        print(":),game has drawn")
+#single player
+def single_player():
+    enter_valueSinglePlayer()
+#multiplayer
+def multiplayer():
+    users_moveMultiplayer()
+#main game
+def main():
+    play_again='y'
+    while play_again=='Y' or play_again=='y' or play_again=='n' or play_again=='N':
+        print("                          WELCOME TO TIC TAC TOE GAME              ","\n",
+              "                               MENU                     ","\n",
+              "ENTER 1 TO PLAY MULTIPLAYER GAME","\n",
+              "ENTER 2 TO PLAY SINGLE PLAYER GAME","\n",
+              "ENTER 3 TO EXIT THE GAME")
+        choice=input("Enter your choice, 1 2 or 3=")
+        while choice!='1' and choice!='2' and choice!='3':
+            choice=input("Enter correct choice, 1 2 or 3=")
+        play_again='y'
+        while (play_again=='Y' or play_again=='y') and choice=='1':
+            multiplayer()
+            play_again=input("Do you want to play another multiplayer game?. if yes enter 'y' if no enter 'n' to go to menu=")
+            while play_again!='n' and play_again!='N' and play_again!='y' and play_again!='Y':
+                play_again=input("please enter valid choice, enter 'y' to continue multiplayer game, and enter 'n' to exit to the menu=")
+            if play_again=='n' or play_again=='N':
+                break
+        while (play_again=='y' or play_again=='Y') and choice=='2':
+            single_player()
+            play_again=input("Do you want to play another single player game?. if yes enter 'y' if no enter 'n'to go to menu=")
+            while play_again!='n' and play_again!='N' and play_again!='y' and play_again!='Y':
+                play_again=input("please enter valid choice, enter 'y' to continue single player game, and enter 'n' to exit to the menu=")
+            if play_again=='n' or play_again=='N':
+                break
+        if choice=='3':
+            break
+    print("       THANK YOU FOR PLAYING GAME            ")
+
+main()
+
+            
+        
+
+
+
